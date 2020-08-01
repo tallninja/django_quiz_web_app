@@ -39,3 +39,19 @@ python3 namage.py migrate
 
 
 ![Image 1](/quiz_github/1.png)
+
+![Image 1](/quiz_github/2.png)
+
+![Image 1](/quiz_github/3.png)
+
+![Image 1](/quiz_github/4.png)
+
+![Image 1](/quiz_github/5.png)
+
+![Image 1](/quiz_github/6.png)
+
+![Image 1](/quiz_github/7.png)
+
+![Image 1](/quiz_github/8.png)
+
+![Image 1](/quiz_github/1.png)
