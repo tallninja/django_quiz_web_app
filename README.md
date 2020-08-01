@@ -2,6 +2,10 @@
 
 ## Django Quiz Web Application ##
 
+I'm proud to present a flexible and configurable django quiz web application.
+I have used Bootstrap on the frontend.
+This is a very secure application which can be used to administer online examinations and or even interactive MCQs
+
 Current features
 ----------------
 Features of each quiz:
