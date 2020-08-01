@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)](https://travis-ci.org/dwyl/esta)
 
-## Django Quiz Web Application
+## Django Quiz Web Application ##
 
 Current features
 ----------------
