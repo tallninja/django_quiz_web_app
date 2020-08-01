@@ -1,0 +1,110 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block description %}{% endblock %}">
+  <title>{% trans "Example Quiz Website" %} | {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+
+<body>
+
+  {% comment %} <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'index' %}">Quiz App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav rm-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-tem" style="color:gray">
+          <a href="{% url 'quiz_index' %}" class="nav-link">Quizzes</a>
+        </li>
+        <li class="nav-tem" style="color:gray">
+            <a href="{% url 'quiz_progress' %}" class="nav-link">Progress</a>
+          </li>
+        {% endif %}
+
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url 'logout' %}">logout</a>
+          {% else %}
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </nav> {% endcomment %}
+
+  <!-- NAVBAR WITH RESPONSIVE TOGGLE -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light mb-3">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}"><i class="fas fa-book-reader"></i> Revision</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                      <li class="nav-tem" style="color:gray">
+                        <a href="{% url 'quiz_index' %}" class="nav-link">Quizzes</a>
+                      </li>
+                      <li class="nav-tem" style="color:gray">
+                          <a href="{% url 'quiz_progress' %}" class="nav-link">Progress</a>
+                      </li>
+                    {% endif %}
+                    
+                    <li class="nav-item ">
+                      {% if user.is_authenticated %}
+                        <a class="btn btn-outline-dark shadow  ml-2" href="{% url 'logout' %}" role="button">logout</a>
+                      {% else %}
+                        <a class="btn btn-outline-dark shadow mr-2" href="{% url 'login' %}" role="button">Login</a>
+                      {% endif %}
+                    </li>
+                  
+                    <li>
+                      {% if user.is_authenticated %}
+                        <a class="btn btn-outline-dark shadow ml-2" href="{% url 'index' %}" role="button">{{ user.username }}</a>
+                      {% else %}
+                        <a class="btn btn-outline-dark shadow ml-2" href="{% url 'register' %}">Register</a>
+                      {% endif %}
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <!-- Before the quiz content -->
+
+  <div class="container">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-success alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"><sup>&times;</sup></span>
+      </button>
+      {{message}}
+    </div>
+    {% endfor %} {% endif %} {% block content %} {% endblock %}
+
+  </div>
+
+ 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7a9b84a39a.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

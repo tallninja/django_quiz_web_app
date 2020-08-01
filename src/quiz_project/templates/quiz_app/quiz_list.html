@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load quiz_tags %}
+{% block title %}{% trans "All Quizzes" %}{% endblock %}
+
+{% block content %}
+	<h2 class="text-center my-3">{% trans "Quizzes" %}</h2>
+	{% if quiz_list %}
+		<div class="table-responsive-sm">
+			<caption class="my-2">Available Quizes</caption>
+			<table class="table">
+				<thead class="thead">
+					<tr>
+					<th>{% trans "Title" %}</th>
+					<th>{% trans "Category" %}</th>
+					<th>{% trans "Exam" %}</th>
+					<th>{% trans "Single attempt" %}</th>
+					<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+				{% for quiz in quiz_list %}
+
+					<tr>
+					<td>{{ quiz.title }}</td>
+					<td>{{ quiz.category }}</td>
+
+					{% if quiz.exam_paper  %}
+						<td class="text-success"><i class="far fa-check-circle"></i></td>
+					{% else %}
+						<td class="text-danger"><i class="far fa-times-circle"></i></td>
+					{% endif %}
+
+					{% if quiz.single_attempt %}
+						<td class="text-success"><i class="far fa-check-circle"></i></td>
+					{% else %}
+						<td class="text-danger"><i class="far fa-times-circle"></i></td>
+					{% endif %}
+					
+					<td><a href="{% url 'quiz_start_page' slug=quiz.url %}" role="button" class="btn btn-primary btn-rounded btn-block">
+					{% trans "Attempt" %}</a>
+					</td>
+
+					</tr>
+
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	{% else %}
+		<p>{% trans "There are no available quizzes" %}.</p>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% load quiz_tags %}
+
+{% block title %} {{ quiz.title }} {% endblock %}
+{% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
+
+{% block content %}
+
+
+{% if user.is_authenticated %}
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-danger">
+      {% trans "You have already sat for this quiz and only one attempt is permitted" %} !!
+    </li>
+  </ul>
+  
+{% else %}
+  <p>{% trans "This exam is only accessible to signed in users" %}.</p>
+{% endif %}
+
+{% endblock %}

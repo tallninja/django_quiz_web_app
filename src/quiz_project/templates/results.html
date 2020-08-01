@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% load quiz_tags %}
+
+{% block title %} {{ quiz.title}} {% endblock %}
+{% block description %} {% trans "Exam Results for" %} {{ quiz.title }} {% endblock %}
+
+{% block content %}
+
+  {% if previous.answers %}
+    <h2>{% trans "Review" %}</h2>
+    <p class='font-weight-bold h4'>Q{{ previous.previous_question_id }}: {{ previous.previous_question }}</p>
+    <p>Your answer was <strong>{{ previous.previous_outcome|yesno:"correct,incorrect" }}</strong>
+    <span class="text-{{ previous.previous_outcome|yesno:"success,danger" }}"> <i class="far fa-{{ previous.previous_outcome|yesno:"check,times" }}-circle"></i></span> </p>
+    
+    {% include 'correct_answer.html' %}
+
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td><strong>{% trans "Explanation" %}:</strong></td>
+        </tr>
+        <tr class="table-success">
+          <td>{{ previous.previous_question.explanation }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <hr>
+  {% endif %}
+
+
+  {% if max_score %}
+
+      <div class="alert alert-{{ sitting.check_if_passed|yesno:"success,danger" }}">
+        <strong>{{ sitting.result_message }}<strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <h2>{% trans "Overall Performance" %}</h2>
+
+      <table class="table table-bordered">
+        <tbody>
+         <tr>
+          <td>Tittle</td>
+          <td>{{ quiz.title }}</td>
+         </tr>
+         <tr>
+          <td>Summary</td>
+          <td>{% trans "You answered" %} {{ score }} {% trans "questions correctly out of" %} {{ max_score }}</td>
+         </tr>
+         <tr>
+          <td>Score</td>
+          <td>
+            {{ percent }}%
+            <i class="far fa-{{ sitting.check_if_passed|yesno:"smile text-success,frown text-danger" }}"></i>
+          </td>
+         </tr>
+         {% if quiz.pass_mark %}
+         <tr>
+          <td>Status</td>
+          <td class="lead">
+            {{ sitting.result_message }}
+          </td>
+         </tr>
+         {% endif %}
+        </tbody>
+      </table>
+
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-info">
+          <p>
+            {% trans "Review the questions below and try the exam again in the future"%}.
+          </p>
+          {% if user.is_authenticated %}
+             <p>{% trans "The result of this exam will be stored in your progress section so you can review and monitor your progression" %}.</p>
+          {% endif %}
+        </li>
+      </ul>
+      
+
+      
+  {% endif %}
+
+  <hr>
+
+  <!-- possible is the maximum score -->
+  {% if possible %}
+    <p class="lead">{% trans "Your session score is" %} {{ session }} {% trans "out of a possible" %} {{ possible }}</p>
+    <hr>
+  {% endif %}
+
+  <!-- loop over the questions and answers -->
+  {% if questions %}
+
+    <!-- loops through our questions -->
+    {% for question in questions %} 
+        <p class="font-weight-bold h4">
+          Q{{ question.id }}: {{ question.content }} 
+          {% comment %} <i class="far fa-{{ question.check_if_correct|yesno:"times,check" }}-circle"></i> {% endcomment %}
+        </p>
+
+        {% correct_answer_for_all question %}
+
+          {% if question.user_answer %}
+
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td class="font-weight-bold">{% trans "Your answer :" %}</td>
+                </tr>
+                <tr>
+                  <td>{{ question|answer_choice_to_string:question.user_answer }}</td>
+                <tr>
+              </tbody>
+            </table>
+         
+          {% endif %}
+
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-success">
+              <p class="font-weight-bold">{% trans "Explanation" %}:</p>
+              <p class="font-italic">{{ question.explanation|safe }}</p>
+            </li>
+        </ul>
+        
+        
+        <hr>
+    {% endfor %}
+
+  {% endif %}
+
+
+{% endblock %}

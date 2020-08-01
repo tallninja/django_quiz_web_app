@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<!-- PRICING -->
+    <section id="pricing_section" class="container text-center my-5">
+        <h3 class="text-dark my-3">Available Packages</h3>
+        <div class="row">
+
+            <!-- BASIC -->
+            <div class="col-md-4">     
+                <div class="card text-center my-3">
+                    <div class="card-header">
+                        <h3>Basic</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">Ksh 500 / month</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 1</li>
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 2</li>
+                            <li class="list-group-item disabled"><span><i class="fas fa-times-circle mr-2"></i></span>Feature 3</li>
+                            <li class="list-group-item disabled"><span><i class="fas fa-times-circle mr-2"></i></span>Feature 4</li>
+                            <li class="list-group-item disabled"><span><i class="fas fa-times-circle mr-2"></i></span>Feature 5</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a class="btn btn-secondary btn-block mt-2" href="./pages/basic.html">Enroll</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRO -->
+            <div class="col-md-4">
+                <div class="card text-center my-3">
+                    <div class="card-header">
+                        <h3>Pro</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">Ksh 1000 / month</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 1</li>
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 2</li>
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 3</li>
+                            <li class="list-group-item disabled"><span><i class="fas fa-times-circle mr-2"></i></span>Feature 4</li>
+                            <li class="list-group-item disabled"><span><i class="fas fa-times-circle mr-2"></i></span>Feature 5</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a class="btn btn-secondary btn-block mt-2" href="./pages/pro.html">Enroll</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREMIUM -->
+            <div class="col-md-4">
+                <div class="card text-center my-3">
+                    <div class="card-header">
+                        <h3>Premium</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">Ksh 2500 / month</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 1</li>
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 2</li>
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 3</li>
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 4</li>
+                            <li class="list-group-item"><span><i class="fas fa-check-circle mr-2"></i></span>Feature 5</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a class="btn btn-secondary btn-block mt-2" href="./pages/premium.html">Enroll</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endif %}
+
+   
+{% endblock  %}

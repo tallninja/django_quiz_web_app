@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+{{ quiz.title }}
+{% endblock %}
+
+{% block content %}
+
+<section id="quiz_detail" class="bg-light py-5">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-header">
+        <h2>{{ quiz.title }}</h2>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>{% trans "Category" %}</td>
+              <td>{{ quiz.category }}</td>
+            </tr>
+            <tr>
+              <td>{% trans "Description" %}</td>
+              <td>{{ quiz.description }}</td>
+            </tr>
+            <tr>
+              <td>{% trans "Pass Mark" %}</td>
+              <td>{{ quiz.pass_mark }}%</td>
+            </tr>
+          </tbody>
+        </table>
+        {% if quiz.single_attempt %}
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-info">
+            {% trans "You will only get one attempt at this quiz" %}.
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'quiz_question' quiz_name=quiz.url %}" role="button" class="btn btn-success btn-block">
+        {% trans "Start quiz" %}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
