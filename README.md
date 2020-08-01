@@ -36,3 +36,6 @@ python3 manage.py makemigrations
 python3 namage.py migrate
 
 ```
+
+
+![Image 1](https://github.com/tallninja/django_quiz_web_app/tree/master/quiz_github/1.png)
